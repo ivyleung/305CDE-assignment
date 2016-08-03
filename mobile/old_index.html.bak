@@ -1,0 +1,50 @@
+<!--  
+    <!-- The page show the drug details -->
+    <div data-role="page" id="main">
+          <div data-role="panel"  id="userdetailsMain" data-display="push">
+              <a href="#page" class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">Home</a>
+              <div id="userdetailMain"></div>
+         </div>
+    
+    <div data-role="panel" name="search" data-display="push" data-position="right" id="searchMain">
+       <div>
+           <h4>Search for drug</h4>
+           <input type="text" id="keywordMain"/><button id="searchingMain">Search</button>
+           <hr>
+           <div data-role="content" id="searchResultMain">
+           </div>
+       </div>
+    </div>
+    
+        <div data-role="header" id="header">
+        </div>
+        <div data-role="header">
+        <a href="#userdetailsMain" class="ui-btn ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-left">My Info</a>
+        <h1>AID: </h1>
+        <a href="#searchMain" class="ui-btn ui-icon-search ui-btn-icon-left">Search</a>
+	    </div>
+        <div data-role="content" >	    
+        <div id="content">            
+        </div>        
+        <div id="comment"> 
+        </div>
+        <div id="addComment"> 
+            <!--<div id="cmRecap" style="margin: 0px auto; display: table" class="g-recaptcha" ></div>-->
+            <textarea id="cm" cols="40" rows="5"></textarea>
+            <button id="submit">Submit</button>
+        </div>        
+        </div>
+    </div>
+    <!-- End of the drug showing page -->
+
+    <!-- The dialog for edit comment -->
+    <div data-role="dialog" id="dialog" title="Edit Comment" data-close-btn="right"  data-rel="dialog">
+        <div data-role="content">
+        Edit Comment
+        <div id="dialogContent"> 
+            <textarea id='cmedit'' cols='40' row='5'></textarea>   
+            <button id='editcm'>Submit</button>      
+        </div>
+        <button onclick="mobile.closeDialog()">Close</button>
+        </div>
+    </div>

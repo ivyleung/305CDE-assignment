@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<title>HIV?</title>
+<link rel=stylesheet type="text/css" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script>
+ //The process of login
+ $(document).ready(function(){
+     $("#btnlogin").click(function(){
+         var username = $("#username").val();
+         var password = $("#password").val();
+         var data = {"uname": username, "password": password, "remember": false};
+         if(username!=""&&password!=""){
+            $.ajax({
+                        url: "../api/login/",
+                        type:"POST",
+                        contentType: "application/json; charset=utf-8",
+                        data:  JSON.stringify(data),
+                        success: function(msg){ 
+                        var data = jQuery.parseJSON(msg);
+                          if(data.success){      
+                              if(typeof(Storage)!=="undefined"){
+                                  sessionStorage.user = username;
+                              }
+                                $("#loginContent").html("Welcome back, " + username 
+                               + ". The browser will redirect you to previous page. <br>");
+                               setTimeout(function(){location.href="index.html";}, 3000);
+                            }else{
+                               alert("Please check your user name and password!");
+                            } 
+                        },
+                        error:function(xhr, ajaxOptions, thrownError){
+                    alert(xhr.status);
+                    alert(thrownError);
+                 }               
+             });
+        }
+     });
+     });
+</script>
+
+
+</head> 
+<body> 
+
+<!-- The login part -->
+    <div data-role="page" id="login">
+        <div data-role="header" data-position="fixed">
+            <a href="index.html" rel="external" class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">Home</a>
+            <h2>Login Page</h2>
+        </div>
+        
+        <div data-role="content" id="loginContent">
+            User name: <input type="text" id="username"><br>
+            Password: <input type="password" id="password"><br>
+            <button id="btnlogin">Login</button>                
+        </div>
+
+    </div>
+
+</body>
+</html>
